@@ -152,7 +152,7 @@ If you try to export a wrapped component, chances are that you'll run into a mis
 //@flow
 import * as React from 'react';
 
-function trivialHOC<Config: {}>(
+function trivialHOC<Config: { ... }>(
   Component: React.AbstractComponent<Config>,
 ): React.AbstractComponent<Config> {
   return Component;
@@ -185,7 +185,7 @@ comes in handy! We can use the type for Props and DefaultProps to calculate the
 //@flow
 import * as React from 'react';
 
-function trivialHOC<Config: {}>(
+function trivialHOC<Config: { ... }>(
   Component: React.AbstractComponent<Config>,
 ): React.AbstractComponent<Config> {
   return Component;
@@ -198,7 +198,7 @@ class MyComponent extends React.Component<Props> {
   static defaultProps: DefaultProps = {foo: 3};
 }
 
-const MyEnhancedComponent = trivialHOC<React.Config<Props, DefaultProps>>(MyComponent);
+const MyEnhancedComponent: React.AbstractComponent<Props> = trivialHOC<React.Config<Props, DefaultProps>>(MyComponent);
 
 // Ok!
 module.exports = MyEnhancedComponent;
